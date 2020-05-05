@@ -184,7 +184,8 @@ status_t HidlCamera3Device::initialize(sp<CameraProviderManager> manager,
             if (res != OK) {
                 CLOGW("Could not retrieve camera %s characteristics: %s (%d)",
                         physicalId.c_str(), strerror(-res), res);
-                physicalId = std::to_string(20); // TODO: Maybe make this a soong config?
+                // HACK for ginkgo - check camera id 20 for depth sensor
+                physicalId = "20";
                 CLOGW("Trying physical camera %s if available", physicalId.c_str());
                 res = manager->getCameraCharacteristics(
                         physicalId, false, &mPhysicalDeviceInfoMap[physicalId]);

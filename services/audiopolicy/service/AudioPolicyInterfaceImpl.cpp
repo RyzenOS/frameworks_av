@@ -695,7 +695,7 @@ Status AudioPolicyService::getInputForAttr(const media::AudioAttributesInternal&
                 // FIXME: use the same permission as for remote submix for now.
                 FALLTHROUGH_INTENDED;
             case AudioPolicyInterface::API_INPUT_MIX_CAPTURE:
-                if (!isAudioServerOrMediaServerUid(callingUid) && !canCaptureOutput) {
+                if (!isAudioServerOrMediaServerUid(attributionSource.uid) && !canCaptureOutput) {
                     ALOGE("%s permission denied: capture not allowed", __func__);
                     status = PERMISSION_DENIED;
                 }
